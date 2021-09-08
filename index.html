@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>Logger (tail-f)</title>.
+      <meta http-equiv="refresh" content="1" />
+  </head>
+  <body>
+    <h1 class="title">Last 10 updates</h1>
+    <div class="file" id="file">
+        <div class="lines" id="lines"></div>
+    </div>
+  </body>
+
+  <script>
+    const socket = new WebSocket("ws://localhost:8080")
+    socket.onmessage = event => {
+        let data = JSON.parse(event.data);
+            if (data.lines) {
+                data.lines.forEach(line => {
+                    let p = document.createElement("p");
+                    p.textContent = line;
+                    document.getElementById("lines").append(p);
+                });
+            }
+    }
+  </script>
+  
+</html>

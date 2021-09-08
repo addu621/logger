@@ -1,0 +1,8 @@
+{
+    "scripts": {
+        "start": "node index.js"
+    },
+    "dependencies": {
+        "websocket": "^1.0.34"
+    }
+}
